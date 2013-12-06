@@ -1,4 +1,6 @@
 Initialgram::Application.routes.draw do
+  resources :follows
+
   devise_for :users
   root 'pictures#index'
 

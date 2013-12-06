@@ -25,6 +25,7 @@ class PicturesController < ApplicationController
   # POST /pictures.json
   def create
     @picture = Picture.new(picture_params)
+    @picture.user = current_user
 
     respond_to do |format|
       if @picture.save
@@ -40,6 +41,8 @@ class PicturesController < ApplicationController
   # PATCH/PUT /pictures/1
   # PATCH/PUT /pictures/1.json
   def update
+    @picture.user = current_user
+
     respond_to do |format|
       if @picture.update(picture_params)
         format.html { redirect_to @picture, notice: 'Picture was successfully updated.' }
