@@ -5,6 +5,8 @@ gem 'rails', '4.0.2'
 
 gem 'carrierwave'
 
+gem 'devise'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 
