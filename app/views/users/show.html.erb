@@ -24,9 +24,7 @@
         </div>
       <% else %>
         <div class="col-md-12">
-          <% follow = Follow.new %>
-          <% follow.followee_id = @user.id %>
-          <%= form_for(follow) do |f| %>
+          <%= form_for(Follow.new followee_id: @user.id) do |f| %>
             <%= f.hidden_field :followee_id %>
 
             <%= f.submit "Follow" %>
