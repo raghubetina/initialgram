@@ -26,7 +26,9 @@
       <% @user.feed.each do |picture| %>
         <div class="row">
           <div class="col-md-12">
-            <li><%= image_tag picture.image, class: 'img-responsive' %></li>
+            <li>
+              <%= link_to image_tag(picture.image, class: 'img-responsive'), picture, class: 'thumbnail' %>
+            </li>
           </div>
         </div>
       <% end %>
