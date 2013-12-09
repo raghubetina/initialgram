@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
 
   validates :username, presence: :true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
-
   def followers
     follows_where_followee = Follow.where(:followee_id => self.id)
 
@@ -24,7 +23,4 @@ class User < ActiveRecord::Base
   def following
 
   end
-
-
-
 end

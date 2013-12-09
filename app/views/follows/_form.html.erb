@@ -13,11 +13,11 @@
 
   <div class="field">
     <%= f.label :follower_id %><br>
-    <%= f.number_field :follower_id %>
+    <%= f.collection_select :follower_id, User.all, :id, :username %>
   </div>
   <div class="field">
     <%= f.label :followee_id %><br>
-    <%= f.number_field :followee_id %>
+    <%= f.collection_select :followee_id, User.all, :id, :username %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -7,3 +7,24 @@
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
 <%= link_to 'Back', users_path %>
+
+<h2>Followers</h2>
+<ul>
+  <% @user.followers.each do |user| %>
+    <li><%= user.username %></li>
+  <% end %>
+</ul>
+
+<h2>Following</h2>
+<ul>
+  <% @user.following.each do |user| %>
+    <li><%= user.username %></li>
+  <% end %>
+</ul>
+
+<h2>Feed</h2>
+<ul>
+  <% @user.feed.each do |picture| %>
+    <li><%= image_tag picture.image, width: 200 %></li>
+  <% end %>
+</ul>
