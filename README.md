@@ -33,3 +33,22 @@ Topics covered include:
 
  - `user_session`
 
+## Authorization
+
+ - Make it so that users cannot modify or destroy other users
+ - Make it so that users cannot modify or destroy other users' pictures
+ - Make it so that users cannot create, modify or destroy other users' follows
+
+## Miscellaneous
+
+ - A user's home feed should be the pictures#index action. Their show page should be their own pictures only.
+ - A user should be able to follow/unfollow another user by clicking a link on the other user's show page.
+ - A user should not be able to follow another user twice.
+ - What are some ways we could mix in a user's own pictures into the home feed?
+
+
+
+
+
+
+

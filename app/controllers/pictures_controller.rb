@@ -1,6 +1,14 @@
 class PicturesController < ApplicationController
   before_action :set_picture, only: [:show, :edit, :update, :destroy]
 
+  before_action :ensure_current_user_is_owner_of_picture, only: [:update, :edit, :destroy]
+
+  def ensure_current_user_is_owner_of_picture
+    unless @picture.user == current_user
+      redirect_to :back, alert: "Nice try."
+    end
+  end
+
   # GET /pictures
   # GET /pictures.json
   def index

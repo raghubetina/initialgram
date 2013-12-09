@@ -1,6 +1,14 @@
 class FollowsController < ApplicationController
   before_action :set_follow, only: [:show, :edit, :update, :destroy]
 
+  before_action :ensure_current_user_is_follower, only: [:update, :edit, :destroy]
+
+  def ensure_current_user_is_follower
+    unless current_user == @follow.follower
+      redirect_to :back, alert: "Nice try."
+    end
+  end
+
   # GET /follows
   # GET /follows.json
   def index

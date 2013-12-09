@@ -5,12 +5,12 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   mount_uploader :avatar, AvatarUploader
 
-  has_many :pictures
+  has_many :pictures, dependent: :destroy
 
   validates :username, presence: :true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
-  has_many :follows_where_followee, class_name: "Follow", foreign_key: "followee_id"
-  has_many :follows_where_follower, class_name: "Follow", foreign_key: "follower_id"
+  has_many :follows_where_followee, class_name: "Follow", foreign_key: "followee_id", dependent: :destroy
+  has_many :follows_where_follower, class_name: "Follow", foreign_key: "follower_id", dependent: :destroy
 
   has_many :followers, through: :follows_where_followee, source: :follower
   has_many :following, through: :follows_where_follower, source: :followee

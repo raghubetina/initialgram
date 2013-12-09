@@ -1,5 +1,13 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
+  before_action :set_user, only: [:show, :update, :destroy]
+
+  before_action :ensure_user_is_current_user, only: [:update, :destroy]
+
+  def ensure_user_is_current_user
+    unless current_user == @user
+      redirect_to :back, alert: "Nice try."
+    end
+  end
 
   # GET /users
   # GET /users.json
