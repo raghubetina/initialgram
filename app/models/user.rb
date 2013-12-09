@@ -9,18 +9,58 @@ class User < ActiveRecord::Base
 
   validates :username, presence: :true, format: { with: /\A[a-zA-Z0-9]+\Z/ }
 
-  def followers
-    follows_where_followee = Follow.where(:followee_id => self.id)
+  has_many :follows_where_followee, class_name: "Follow", foreign_key: "followee_id"
+  has_many :follows_where_follower, class_name: "Follow", foreign_key: "follower_id"
 
-    result = []
-    follows_where_followee.each do |follow|
-      result << follow.follower
-    end
+  has_many :followers, through: :follows_where_followee, source: :follower
+  has_many :following, through: :follows_where_follower, source: :followee
 
-    return result
-  end
+  has_many :feed, through: :following, source: :pictures
 
-  def following
+  # def feed
+  #   users = self.following
 
-  end
+  #   result = []
+  #   users.each do |user|
+  #     user.pictures.each do |picture|
+  #       result << picture
+  #     end
+  #   end
+
+  #   return result
+  # end
+
+  # or
+
+  # has_many :feed, .....
+
+  # def followers
+  #   follows_where_followee = Follow.where(:followee_id => self.id)
+
+  #   result = []
+  #   follows_where_followee.each do |follow|
+  #     result << follow.follower
+  #   end
+
+  #   return result
+  # end
+
+  # def following
+  #   follows_where_follower = Follow.where(:follower_id => self.id)
+
+  #   result = []
+  #   follows_where_follower.each do |follow|
+  #     result << follow.followee
+  #   end
+
+  #   return result
+  # end
 end
+
+
+
+
+
+
+
+
