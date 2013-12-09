@@ -20,14 +20,15 @@
     <div class="row">
       <% if @user.followers.include? current_user %>
         <div class="col-md-12">
-          Unfollow
+          <% follow = Follow.find_by follower_id: current_user.id, followee_id: @user.id %>
+          <%= link_to "Unfollow", follow, method: 'delete', class: 'btn btn-danger' %>
         </div>
       <% else %>
         <div class="col-md-12">
           <%= form_for(Follow.new followee_id: @user.id) do |f| %>
             <%= f.hidden_field :followee_id %>
 
-            <%= f.submit "Follow" %>
+            <%= f.button "Follow", class: 'btn btn-success' %>
           <% end %>
         </div>
       <% end %>
