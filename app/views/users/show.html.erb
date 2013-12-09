@@ -17,6 +17,24 @@
       </div>
     </div>
 
+    <div class="row">
+      <% if @user.followers.include? current_user %>
+        <div class="col-md-12">
+          Unfollow
+        </div>
+      <% else %>
+        <div class="col-md-12">
+          <% follow = Follow.new %>
+          <% follow.followee_id = @user.id %>
+          <%= form_for(follow) do |f| %>
+            <%= f.hidden_field :followee_id %>
+
+            <%= f.submit "Follow" %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+
     <%= link_to 'Edit', edit_user_registration_path %> |
     <%= link_to 'Back', users_path %>
   </div>
